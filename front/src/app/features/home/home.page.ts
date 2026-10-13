@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
         <span class="hidden sm:inline">×</span>
       </div>
 
-      <header class="flex w-full items-center justify-between px-5 py-6 lg:px-12 xl:px-16">
+      <header class="relative z-40 flex w-full items-center justify-between px-5 py-6 lg:px-12 xl:px-16">
         <a routerLink="/" class="text-4xl font-black italic tracking-normal text-[#2f5638]">Sama<span class="text-[#f47735]">Biz</span></a>
         <nav class="hidden items-center gap-9 text-xs font-black uppercase tracking-wide text-[#283f2f]/80 md:flex">
           <a href="#modules">Modules</a>
@@ -20,21 +20,38 @@ import { RouterLink } from '@angular/router';
           <a href="#tarifs">Plans</a>
           <a href="#story">À propos</a>
         </nav>
-        <div class="flex items-center gap-3 text-[#283f2f]">
-          <a routerLink="/login" class="hidden text-sm font-black sm:inline">Connexion</a>
+        <div class="hidden items-center gap-3 text-[#283f2f] md:flex">
+          <a routerLink="/login" class="text-sm font-black">Connexion</a>
           <a routerLink="/register" class="rounded-full bg-[#6c7857] px-5 py-3 text-xs font-black uppercase text-white">Démarrer</a>
         </div>
+        <button type="button" (click)="toggleMobileMenu()" class="grid size-12 place-items-center rounded-full border border-[#e9c9b8] bg-white text-[#2f5638] shadow-sm md:hidden" aria-label="Menu" [attr.aria-expanded]="mobileMenuOpen()">
+          <i class="fa-solid" [class.fa-bars]="!mobileMenuOpen()" [class.fa-xmark]="mobileMenuOpen()"></i>
+        </button>
+
+        @if (mobileMenuOpen()) {
+          <div class="absolute inset-x-5 top-[86px] rounded-[24px] border border-[#ead8c9] bg-white p-4 shadow-2xl shadow-[#2f5638]/10 md:hidden">
+            <nav class="grid gap-2 text-sm font-black uppercase text-[#283f2f]">
+              <a href="#modules" (click)="closeMobileMenu()" class="rounded-2xl bg-[#fbf5eb] px-4 py-3">Modules</a>
+              <a href="#collections" (click)="closeMobileMenu()" class="rounded-2xl bg-[#fbf5eb] px-4 py-3">Solutions</a>
+              <a href="#tarifs" (click)="closeMobileMenu()" class="rounded-2xl bg-[#fbf5eb] px-4 py-3">Plans</a>
+              <a href="#story" (click)="closeMobileMenu()" class="rounded-2xl bg-[#fbf5eb] px-4 py-3">À propos</a>
+            </nav>
+            <div class="mt-4 grid grid-cols-2 gap-3">
+              <a routerLink="/login" (click)="closeMobileMenu()" class="rounded-full border border-[#e9c9b8] px-4 py-3 text-center text-xs font-black uppercase text-[#2f5638]">Connexion</a>
+              <a routerLink="/register" (click)="closeMobileMenu()" class="rounded-full bg-[#6c7857] px-4 py-3 text-center text-xs font-black uppercase text-white">Démarrer</a>
+            </div>
+          </div>
+        }
       </header>
 
       <section class="w-full px-5 lg:px-12 xl:px-16">
-        <div class="relative overflow-hidden rounded-[32px] bg-[#1f2d24] px-8 py-12 lg:min-h-[560px] lg:px-20 xl:px-24">
-          <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1800&q=80')] bg-cover bg-center"></div>
-          <div class="absolute inset-0 bg-black/60"></div>
-          <div class="relative z-10 max-w-2xl py-16 lg:py-24">
-            <h1 class="text-5xl font-black uppercase leading-[0.95] tracking-normal text-white sm:text-6xl">
-              Gérez.<br /><span class="text-[#ff8a55]">Vendez.</span><br />Grandissez.
+        <div class="relative overflow-hidden rounded-[32px] bg-[#fde5d9] px-5 pb-8 pt-[360px] min-h-[760px] sm:px-8 sm:pt-[420px] lg:min-h-[720px] lg:px-20 lg:py-12 xl:px-24">
+          <div class="absolute inset-x-0 top-0 h-[430px] bg-[url('/assets/samabiz-hero-anime.png')] bg-cover bg-[position:70%_center] sm:h-[500px] lg:inset-0 lg:h-auto lg:bg-cover lg:bg-center"></div>
+          <div class="relative z-10 max-w-2xl overflow-hidden rounded-[28px] bg-white/90 p-5 shadow-soft backdrop-blur-sm min-[380px]:p-6 sm:p-7 lg:my-36 lg:bg-white/80 lg:p-10">
+            <h1 class="text-[2.65rem] font-black uppercase leading-[0.98] tracking-normal text-[#2f5638] min-[380px]:text-5xl sm:text-6xl">
+              Gérez.<br /><span class="text-[#ef7037]">Vendez.</span><br />Grandissez.
             </h1>
-            <p class="mt-6 max-w-xl text-sm font-semibold leading-7 text-white/80">
+            <p class="mt-6 max-w-xl text-sm font-semibold leading-7 text-[#283f2f]/75">
               Une plateforme tout-en-un pour organiser vos clients, produits, ventes, factures, dépenses et stock sans perdre le fil.
             </p>
             <a routerLink="/register" class="mt-7 inline-flex items-center gap-3 rounded-full bg-[#6c7857] px-6 py-4 text-xs font-black uppercase text-white shadow-soft">
@@ -55,7 +72,7 @@ import { RouterLink } from '@angular/router';
           <a routerLink="/register" class="rounded-full border border-[#e9c9b8] px-5 py-3 text-xs font-black uppercase">Essayer gratuitement</a>
         </div>
 
-        <div class="mx-auto grid max-w-screen-2xl gap-6 md:grid-cols-2">
+        <div class="mx-auto grid max-w-screen-2xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           @for (plan of pricingPlans; track plan.name) {
             <article class="flex min-h-[560px] flex-col rounded-xl border border-[#ead8c9] bg-white p-8 shadow-sm" [class.border-[#f47735]]="plan.featured" [class.ring-2]="plan.featured" [class.ring-[#f47735]]="plan.featured">
               <div class="flex min-h-7 items-start justify-between gap-2">
@@ -117,7 +134,7 @@ import { RouterLink } from '@angular/router';
             <p class="mt-5 text-sm font-semibold leading-7 text-[#283f2f]/70">Chaque vente, chaque client et chaque produit devient une donnée utile pour prendre de meilleures décisions.</p>
             <a routerLink="/register" class="mt-7 inline-flex rounded-full border border-[#ef7037] px-5 py-3 text-xs font-black uppercase">Notre vision <i class="fa-solid fa-arrow-right"></i></a>
           </div>
-          <div class="min-h-72 bg-[url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center"></div>
+          <div class="min-h-[360px] bg-[#fde5d9] bg-[url('/assets/samabiz-story-business-collage.png')] bg-contain bg-center bg-no-repeat sm:min-h-[460px] lg:min-h-[560px] lg:bg-cover"></div>
         </div>
       </section>
 
@@ -174,6 +191,16 @@ import { RouterLink } from '@angular/router';
   `,
 })
 export class HomePage {
+  readonly mobileMenuOpen = signal(false);
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen.update((open) => !open);
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
+
   readonly heroStats = [
     { label: 'CA', value: '850k' },
     { label: 'Clients', value: '86' },

@@ -9,14 +9,16 @@ import { AuthService } from '../../core/auth/auth.service';
   template: `
     <main class="h-[100dvh] w-screen overflow-hidden bg-[#b9edff] text-[#16231c] lg:bg-white">
       <div class="grid h-[100dvh] w-full lg:grid-cols-[0.95fr_1.05fr]">
-        <section class="relative hidden min-h-screen overflow-hidden bg-[#b9edff] lg:flex lg:flex-col lg:justify-between lg:p-12 xl:p-16">
+        <section class="relative hidden min-h-screen overflow-hidden bg-[#1f2d24] lg:flex lg:flex-col lg:justify-between lg:p-12 xl:p-16">
+          <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85')] bg-cover bg-center"></div>
+          <div class="absolute inset-0 bg-[#1f2d24]/72"></div>
           <div class="absolute -left-12 top-8 text-8xl font-black uppercase italic text-white/45">Sama</div>
           <div class="absolute left-20 top-40 size-24 rounded-full border-4 border-white/60"></div>
           <div class="absolute bottom-24 right-16 h-28 w-44 rotate-12 rounded-full border-[10px] border-white/55"></div>
           <a routerLink="/" class="relative z-10 inline-block w-fit rounded-3xl bg-white p-3 shadow-soft">
             <img src="/assets/samabiz-logo.png" alt="SamaBiz" class="h-20 w-auto object-contain" />
           </a>
-          <div class="relative z-10 max-w-lg rounded-[36px] bg-white p-10 shadow-2xl shadow-[#2f5638]/10">
+          <div class="relative z-10 max-w-lg rounded-[36px] bg-white/95 p-10 shadow-2xl shadow-[#2f5638]/10">
             <h1 class="text-5xl font-black leading-tight">Bienvenue</h1>
             <p class="mt-4 text-lg font-semibold text-[#16231c]/55">Connectez-vous en toute sécurité et reprenez la gestion de votre activité.</p>
             <div class="mt-10 grid gap-4">
@@ -27,6 +29,9 @@ import { AuthService } from '../../core/auth/auth.service';
         </section>
 
         <section class="relative flex h-[100dvh] w-full items-stretch justify-center p-0 sm:items-center sm:px-8 sm:py-8 lg:bg-[#fbf5eb] lg:px-14 xl:px-20">
+          <a routerLink="/" class="absolute left-4 top-4 z-30 inline-flex items-center gap-2 rounded-full border border-[#2f5638]/15 bg-white/90 px-4 py-2 text-xs font-black uppercase text-[#2f5638] shadow-sm backdrop-blur transition hover:bg-white">
+            <i class="fa-solid fa-arrow-left"></i> Accueil
+          </a>
           <div class="absolute -left-10 top-8 text-6xl font-black uppercase italic text-white/45 lg:hidden">Boom</div>
           <div class="absolute right-5 top-20 size-14 rounded-full border-4 border-white/70 lg:hidden"></div>
           <div class="absolute bottom-10 right-[-38px] size-28 rounded-full border-[12px] border-white/60 lg:hidden"></div>
