@@ -1,0 +1,4 @@
+import { Component } from '@angular/core';
+
+@Component({ standalone: true, template: `<div class="space-y-6"><div><h2 class="text-3xl font-black">Produits</h2><p class="text-sm font-semibold text-ink/60">Catalogue, prix, catégories et seuils de stock</p></div><div class="rounded-lg border border-black/10 bg-white p-5 shadow-soft"><button class="rounded-md bg-sunu px-4 py-3 font-black text-white">Nouveau produit</button><div class="mt-6 grid gap-3 sm:grid-cols-3"><div class="rounded-md border border-black/10 p-4"><strong>Stock</strong><p class="mt-2 text-2xl font-black">0</p></div><div class="rounded-md border border-black/10 p-4"><strong>Catégories</strong><p class="mt-2 text-2xl font-black">0</p></div><div class="rounded-md border border-black/10 p-4"><strong>Alertes</strong><p class="mt-2 text-2xl font-black">0</p></div></div></div></div>` })
+export class ProductsPage {}

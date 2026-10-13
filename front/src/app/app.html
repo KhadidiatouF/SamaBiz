@@ -1,0 +1,37 @@
+@if (isAuthenticated()) {
+  <div class="min-h-screen bg-[#f7f7f2] text-ink lg:flex">
+    <aside class="border-r border-black/10 bg-white lg:sticky lg:top-0 lg:h-screen lg:w-72">
+      <div class="flex h-16 items-center justify-between border-b border-black/10 px-5">
+        <a routerLink="/dashboard" class="text-xl font-black tracking-normal text-sunu">SamaBiz</a>
+        <span class="rounded bg-mango px-2 py-1 text-xs font-bold text-white">PRO</span>
+      </div>
+      <nav class="flex gap-1 overflow-x-auto p-3 lg:block lg:space-y-1">
+        @for (item of navItems; track item.path) {
+          <a [routerLink]="item.path" routerLinkActive="bg-sunu text-white" class="flex min-w-fit items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold text-ink/75 hover:bg-sunu/10">
+            <span class="grid size-7 place-items-center rounded border border-current/20 text-sm">{{ item.icon }}</span>
+            {{ item.label }}
+          </a>
+        }
+      </nav>
+    </aside>
+
+    <main class="min-w-0 flex-1">
+      <header class="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-black/10 bg-white/90 px-4 backdrop-blur lg:px-8">
+        <div>
+          <p class="text-xs font-bold uppercase text-sunu">Ton business. Un seul endroit.</p>
+          <h1 class="text-lg font-black">SamaBiz</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <a routerLink="/notifications" class="grid size-10 place-items-center rounded-md border border-black/10 bg-white font-bold">!</a>
+          <div class="grid size-10 place-items-center rounded-md bg-ink text-sm font-bold text-white">{{ initials() }}</div>
+          <button type="button" (click)="logout()" class="rounded-md border border-black/10 px-3 py-2 text-sm font-bold hover:bg-black/5">Sortir</button>
+        </div>
+      </header>
+      <section class="p-4 lg:p-8">
+        <router-outlet />
+      </section>
+    </main>
+  </div>
+} @else {
+  <router-outlet />
+}

@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sunubiz-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sunubiz
+      POSTGRES_USER: sunubiz
+      POSTGRES_PASSWORD: sunubiz
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sunubiz -d sunubiz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  back:
+    build:
+      context: ./back
+    container_name: sunubiz-back
+    restart: unless-stopped
+    env_file:
+      - ./back/.env.example
+    environment:
+      DATABASE_URL: postgresql://sunubiz:sunubiz@postgres:5432/sunubiz?schema=public
+      FRONTEND_URL: http://localhost:4200
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  front:
+    build:
+      context: ./front
+    container_name: sunubiz-front
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - back
+
+volumes:
+  postgres-data:
