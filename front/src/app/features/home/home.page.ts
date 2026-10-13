@@ -48,7 +48,7 @@ import { RouterLink } from '@angular/router';
         <div class="relative overflow-hidden rounded-[32px] bg-[#fde5d9] px-5 pb-8 pt-[360px] min-h-[760px] sm:px-8 sm:pt-[420px] lg:min-h-[720px] lg:px-20 lg:py-12 xl:px-24">
           <div class="absolute inset-x-0 top-0 h-[430px] bg-[url('/assets/samabiz-hero-anime.png')] bg-cover bg-[position:70%_center] sm:h-[500px] lg:inset-0 lg:h-auto lg:bg-cover lg:bg-center"></div>
           <div class="relative z-10 max-w-2xl overflow-hidden rounded-[28px] bg-white/90 p-5 shadow-soft backdrop-blur-sm min-[380px]:p-6 sm:p-7 lg:my-36 lg:bg-white/80 lg:p-10">
-            <h1 class="text-[2.65rem] font-black uppercase leading-[0.98] tracking-normal text-[#2f5638] min-[380px]:text-5xl sm:text-6xl">
+            <h1 class="text-[2rem] font-black uppercase leading-[1.02] tracking-normal text-[#2f5638] min-[380px]:text-[2.35rem] sm:text-5xl lg:text-6xl">
               Gérez.<br /><span class="text-[#ef7037]">Vendez.</span><br />Grandissez.
             </h1>
             <p class="mt-6 max-w-xl text-sm font-semibold leading-7 text-[#283f2f]/75">
@@ -134,7 +134,10 @@ import { RouterLink } from '@angular/router';
             <p class="mt-5 text-sm font-semibold leading-7 text-[#283f2f]/70">Chaque vente, chaque client et chaque produit devient une donnée utile pour prendre de meilleures décisions.</p>
             <a routerLink="/register" class="mt-7 inline-flex rounded-full border border-[#ef7037] px-5 py-3 text-xs font-black uppercase">Notre vision <i class="fa-solid fa-arrow-right"></i></a>
           </div>
-          <div class="min-h-[360px] bg-[#fde5d9] bg-[url('/assets/samabiz-story-business-collage.png')] bg-contain bg-center bg-no-repeat sm:min-h-[460px] lg:min-h-[560px] lg:bg-cover"></div>
+          <div class="grid gap-3 bg-[#fde5d9] p-3 sm:p-4 lg:min-h-[560px] lg:grid-cols-2">
+            <div class="min-h-[320px] rounded-[22px] bg-[url('/assets/samabiz-story-business-collage.png')] bg-[length:200%_100%] bg-left bg-no-repeat sm:min-h-[390px] lg:min-h-full"></div>
+            <div class="min-h-[320px] rounded-[22px] bg-[url('/assets/samabiz-story-business-collage.png')] bg-[length:200%_100%] bg-right bg-no-repeat sm:min-h-[390px] lg:min-h-full"></div>
+          </div>
         </div>
       </section>
 
